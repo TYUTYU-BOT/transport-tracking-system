@@ -2,11 +2,15 @@
   "name": "transport-tracking-system",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "simulate": "node --env-file=.env.local scripts/simulate-device.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
