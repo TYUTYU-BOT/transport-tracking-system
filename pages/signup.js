@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
+import AuthForm from "@/components/AuthForm";
 
 export default function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleSignup = async () => {
+  const handleSignup = async ({ username, password }) => {
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,22 +19,5 @@ export default function Signup() {
     }
   };
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2>Sign Up</h2>
-
-      <input
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      /><br /><br />
-
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      /><br /><br />
-
-      <button onClick={handleSignup}>Sign Up</button>
-    </div>
-  );
+  return <AuthForm title="Sign Up" buttonLabel="Sign Up" onSubmit={handleSignup} />;
 }
